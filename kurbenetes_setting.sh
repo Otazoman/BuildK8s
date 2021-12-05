@@ -64,3 +64,4 @@ if [ "$NODETYPE" = "master" ]; then
 else
   # Sub node
   echo "\n${MASTERIP} ${MASTERNAME} ${MASTERNAME}.${DOMAIN}" | sudo tee -a /etc/hosts
+fi
