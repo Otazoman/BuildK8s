@@ -18,10 +18,9 @@ $ cd BuildK8s
 $ sudo . /previous_setting.sh 192.168.0.11 192.168.0.1 lb1srv yourdomain on  
 $ sudo . /previous_setting.sh 192.168.0.12 192.168.0.1 lb2srv yourdomain on  
 ### Kubernetes  
-$ sudo . /previous_setting.sh 192.168.0.21 192.168.0.1 kube1srv yourdomain off
-$ sudo . /previous_setting.sh 192.168.0.22 192.168.0.1 kube2srv yourdomain off
-$ sudo . /previous_setting.sh 192.168.0.23 192.168.0.1 kube3srv yourdomain off
-  
+$ sudo . /previous_setting.sh 192.168.0.21 192.168.0.1 kube1srv yourdomain off  
+$ sudo . /previous_setting.sh 192.168.0.22 192.168.0.1 kube2srv yourdomain off  
+$ sudo . /previous_setting.sh 192.168.0.23 192.168.0.1 kube3srv yourdomain off    
 ## Build HA-Proxy(After executing the common shell script)  
 ### Main  
 $ sudo ./vrrp_haproxy.sh \  
