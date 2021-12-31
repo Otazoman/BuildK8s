@@ -2,15 +2,16 @@
 
 CMDNAME=`basename $0`
 
-if [ $# -ne 4 ]; then
+if [ $# -ne 5 ]; then
   echo "Usage: ${CMDNAME} hostipadress gatewayip hostname domain" 1>&2
   exit 1
 fi
 
-HOSTIP=$1
-GATEWAYIP=$2
-HOSTNAME=$3
-DOMAIN=$4
+HOSTIP=$1     # This host ip address
+GATEWAYIP=$2  # Default gateway
+HOSTNAME=$3   # This host hostname
+DOMAIN=$4     # rhis host domain
+SWAP=$5       # Swap mode
 NETWORK=$(echo ${GATEWAYIP} | sed -e "s/\.\([^.]*\)$/.0\/24/")
 
 ## Firewall port open
@@ -60,9 +61,11 @@ EOF
 sudo apt update
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade
 
-## swap off
-sudo swapoff -a
-sudo sed -i -e 's!/swap.img!#/swap.img!g' /etc/fstab
+## swap off (Only kubernetes hosts)
+if [ "$SWAP" = "off" ]; then
+  sudo swapoff -a
+  sudo sed -i -e 's!/swap.img!#/swap.img!g' /etc/fstab
+fi
 
 ## Reflect setting
 echo " Close your terminal please "
