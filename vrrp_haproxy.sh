@@ -28,7 +28,7 @@ PORT=6443
 # Added hosts
 echo "${LBIP} ${LBNAME} ${LBNAME}.${DOMAIN}" | sudo tee -a /etc/hosts
 echo "${LB1_IP} ${LB1_NAME} ${LB1_NAME}.${DOMAIN}" | sudo tee -a /etc/hosts
-echo "${LB2_IP} ${LB1_NAME} ${LB2_NAME}.${DOMAIN}" | sudo tee -a /etc/hosts
+echo "${LB2_IP} ${LB2_NAME} ${LB2_NAME}.${DOMAIN}" | sudo tee -a /etc/hosts
 echo "${KUBERIP1} ${MASTERNAME1} ${MASTERNAME1}.${DOMAIN}" | sudo tee -a /etc/hosts
 echo "${KUBERIP2} ${MASTERNAME2} ${MASTERNAME2}.${DOMAIN}" | sudo tee -a /etc/hosts
 echo "${KUBERIP3} ${MASTERNAME3} ${MASTERNAME3}.${DOMAIN}" | sudo tee -a /etc/hosts
