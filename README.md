@@ -5,9 +5,10 @@ ShellScript to build HA-PROXY and Kubernetes
 This is a shell script to build a master and sub environment for kubernetes, using CRI-O and Calico.
 You can switch between clustered and non-clustered configurations with command line options.
 It is recommended that you also run the HA-PROXY build Shell if you are using a clustered configuration.  
+As a bonus, we have also prepared a shell script that can build GlusterFS on a HAProxy server in a two-unit configuration.  
   
 # Operating environment  
-Ubuntu 20.04.2 LTS  
+Ubuntu 20.04.3 LTS  
 
 # How to use  
 $ git clone https://github.com/Otazoman/BuildK8s.git  
@@ -30,7 +31,7 @@ $ sudo ./vrrp_haproxy.sh \
 	lb1srv \  
 	lb2srv \  
 	192.168.0.11 \  
-	192.168.1.12 \  
+	192.168.0.12 \  
 	halbsrv \  
 	192.168.0.10 \  
 	kube1srv \  
@@ -48,7 +49,7 @@ $ sudo ./vrrp_haproxy.sh \
 	lb1srv \  
 	lb2srv \  
 	192.168.0.11 \  
-	192.168.1.12 \  
+	192.168.0.12 \  
 	halbsrv \  
 	192.168.0.10 \  
 	kube1srv \  
@@ -62,19 +63,19 @@ $ sudo ./vrrp_haproxy.sh \
 ### Cluster master  
 $ sudo ./kurbenetes_setting.sh \  
 	cluster \  
-	192.168.1.10 \  
+	192.168.0.10 \  
 	halbsrv \  
 	kube1srv \  
 	kube2srv \  
 	kube3srv \  
 	yourdomain \  
-	192.168.1.21 \  
-	192.168.1.22 \  
-	192.168.1.23  
+	192.168.0.21 \  
+	192.168.0.22 \  
+	192.168.0.23  
 ### Non cluster master  
 $ sudo ./kurbenetes_setting.sh \  
 	cluster \  
-	192.168.1.10 \  
+	192.168.0.10 \  
 	halbsrv \  
 	kube1srv \  
 	kube2srv \  
@@ -95,6 +96,26 @@ $ sudo ./kurbenetes_setting.sh \
 	192.168.1.21 \  
 	192.168.1.22 \  
 	192.168.1.23  
+## Build GlusterFS Cluster on HAProxy server(After executing the HAProxy shell)  
+### Run from subnodes  
+$ sudo ./glusterfs.sh \  
+	secondary \  
+	192.168.0.0/24 \  
+	gfs \  
+	bricks \  
+	volume \  
+	lb1srv \  
+	lb2srv  
+### After subnodes mainnode execute  
+$ sudo ./glusterfs.sh \
+        primary \
+        192.168.0.0/24 \
+        gfs \
+        bricks \
+        volume \
+        lb1srv \
+        lb2srv  
+ 
 *Caution  
 In the case of subnodes, you need to submit the command after configuring the main machine (cri-socket option is required)  
 ex)  
