@@ -98,7 +98,7 @@ $ sudo ./kurbenetes_setting.sh \
 	192.168.1.23  
 ## Build GlusterFS Cluster (After executing the HAProxy or kubernetes shell)  
 ### Run from subnodes  
-$ sudo ./glusterfs.sh \  
+$ ./glusterfs.sh \  
 	secondary \  
 	192.168.0.0/24 \  
 	gfs \  
@@ -107,7 +107,7 @@ $ sudo ./glusterfs.sh \
 	lb1srv \  
 	lb2srv  
 ### After subnodes mainnode execute  
-$ sudo ./glusterfs.sh \
+$ ./glusterfs.sh \
         primary \
         192.168.0.0/24 \
         gfs \
